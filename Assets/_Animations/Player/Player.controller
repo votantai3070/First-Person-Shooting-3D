@@ -67,7 +67,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: y
+  - m_Name: z
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -113,7 +113,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5c12c4610fe7b5744add27d50d2fae70, type: 2}
+  m_Motion: {fileID: -203655887218126122, guid: b5b0cb2f1f3d25743a0e9609aa049664, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -160,7 +160,7 @@ BlendTree:
     m_DirectBlendParameter: Running
     m_Mirror: 0
   m_BlendParameter: x
-  m_BlendParameterY: y
+  m_BlendParameterY: z
   m_MinThreshold: 0
   m_MaxThreshold: 3
   m_UseAutomaticThresholds: 0

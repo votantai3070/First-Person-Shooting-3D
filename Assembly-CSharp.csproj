@@ -62,11 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\WeaponModels.cs" />
+    <Compile Include="Assets\_Scripts\AimTargetUpdater.cs" />
     <Compile Include="Assets\_Scripts\CameraPOV.cs" />
     <Compile Include="Assets\_Scripts\FixShaders.cs" />
     <Compile Include="Assets\_InputManager\PlayerControls.cs" />
+    <Compile Include="Assets\_Scripts\Crosshair.cs" />
     <Compile Include="Assets\_Scripts\SetupWeaponMaterials.cs" />
     <Compile Include="Assets\_Scripts\InputManager.cs" />
+    <Compile Include="Assets\_Scripts\AimTargetController.cs" />
     <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\PlayerWeaponVisuals.cs" />
     <Compile Include="Assets\_Scripts\Player.cs" />

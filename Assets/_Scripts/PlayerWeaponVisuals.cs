@@ -36,10 +36,14 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
     public void SetRunning(Vector3 direction)
     {
-        bool isRunning = direction.magnitude > 0;
+        bool isRunning = direction.magnitude > 0.01;
+
+        float xVelocity = Vector3.Dot(direction.normalized, transform.right);
+        float zVelocity = Vector3.Dot(direction.normalized, transform.forward);
+
         animator.SetBool("Running", isRunning);
-        animator.SetFloat("x", direction.x);
-        animator.SetFloat("y", direction.z);
+        animator.SetFloat("x", xVelocity, .1f, Time.deltaTime);
+        animator.SetFloat("z", zVelocity, .1f, Time.deltaTime);
     }
 
     private void AttachLeftHand()
