@@ -32,6 +32,12 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
     private void Update()
     {
+        SwitchAnimationLayer();
+    }
+
+    public Transform GetPlayerViewPointTransform()
+    {
+        return GetCurrentWeapon().playerViewPointTransform;
     }
 
     public void SetRunning(Vector3 direction)
@@ -49,9 +55,26 @@ public class PlayerWeaponVisuals : MonoBehaviour
     private void AttachLeftHand()
     {
         Transform leftHandIK = GetCurrentWeapon().leftHandIK;
+        Transform leftHandElbow = GetCurrentWeapon().leftHandElbow;
 
         this.leftHandIK.localPosition = leftHandIK.localPosition;
         this.leftHandIK.localRotation = leftHandIK.localRotation;
+
+        this.leftHandElbow.localPosition = leftHandElbow.localPosition;
+        this.leftHandElbow.localRotation = leftHandElbow.localRotation;
+
+    }
+
+    private void SwitchAnimationLayer()
+    {
+        int layerIndex = (int)GetCurrentWeapon().layerAnimationType;
+
+        for (int i = 0; i < animator.layerCount; i++)
+        {
+            animator.SetLayerWeight(i, 0);
+        }
+
+        animator.SetLayerWeight(layerIndex, 1);
     }
 
     public WeaponModels GetCurrentWeapon()
@@ -64,7 +87,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
         {
             if (weaponModel.weaponModelType == weaponType)
             {
-                return currentWeapon = weaponModel;
+                return weaponModel;
             }
         }
 

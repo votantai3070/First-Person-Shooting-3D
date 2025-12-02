@@ -71,6 +71,7 @@
     <Compile Include="Assets\_Scripts\InputManager.cs" />
     <Compile Include="Assets\_Scripts\AimTargetController.cs" />
     <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\_Scripts\ElbowHintPositioner.cs" />
     <Compile Include="Assets\_Scripts\PlayerWeaponVisuals.cs" />
     <Compile Include="Assets\_Scripts\Player.cs" />
   </ItemGroup>

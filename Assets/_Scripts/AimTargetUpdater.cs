@@ -2,6 +2,8 @@
 
 public class AimTargetUpdater : MonoBehaviour
 {
+    public Player player { get; private set; }
+
     [Header("References")]
     [SerializeField] private Transform aimTarget; // AimTarget GameObject
     [SerializeField] private Camera playerCamera;
@@ -13,8 +15,14 @@ public class AimTargetUpdater : MonoBehaviour
 
     private void Start()
     {
+
+
         if (playerCamera == null)
             playerCamera = Camera.main;
+
+        player = GetComponentInParent<Player>();
+
+        SetTransform();
     }
 
     private void Update()
@@ -50,4 +58,18 @@ public class AimTargetUpdater : MonoBehaviour
         // Update aim target position
         aimTarget.position = targetPosition;
     }
+
+    private void SetTransform()
+    {
+        Transform aim = player.visuals.GetPlayerViewPointTransform();
+
+        if (aim == null)
+        {
+            Debug.LogWarning("Aim transform is null!");
+            return;
+        }
+
+        transform.localPosition = aim.localPosition;
+    }
+
 }
