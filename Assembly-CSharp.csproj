@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4557B456-A229-FA76-24C8-8C106CE347A8}</ProjectGuid>
+    <ProjectGuid>{6098D2D2-2F4E-C283-AE14-ECB1447E34B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -64,6 +64,7 @@
     <Compile Include="Assets\_Scripts\Weapon\ElbowHintPositioner.cs" />
     <Compile Include="Assets\_Scripts\Weapon\WeaponModels.cs" />
     <Compile Include="Assets\_Scripts\Weapon\AimTargetUpdater.cs" />
+    <Compile Include="Assets\_Scripts\Player\PlayerEvents.cs" />
     <Compile Include="Assets\_Scripts\Player\Player.cs" />
     <Compile Include="Assets\_Scripts\FixShaders.cs" />
     <Compile Include="Assets\_Scripts\Weapon\AimTargetController.cs" />
@@ -72,7 +73,9 @@
     <Compile Include="Assets\_Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\_Scripts\Crosshair.cs" />
     <Compile Include="Assets\_Scripts\SetupWeaponMaterials.cs" />
+    <Compile Include="Assets\_Scripts\Bullet.cs" />
     <Compile Include="Assets\_Scripts\Camera\CameraPOV.cs" />
+    <Compile Include="Assets\_Scripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>

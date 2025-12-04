@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
     public PlayerControls controls;
     public PlayerMovement movement { get; private set; }
     public PlayerWeaponVisuals visuals { get; private set; }
+    public PlayerAttack attack { get; private set; }
+    public Animator anim { get; private set; }
 
 
     private void Awake()
@@ -13,6 +15,8 @@ public class Player : MonoBehaviour
 
         movement = GetComponent<PlayerMovement>();
         visuals = GetComponent<PlayerWeaponVisuals>();
+        attack = GetComponent<PlayerAttack>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()

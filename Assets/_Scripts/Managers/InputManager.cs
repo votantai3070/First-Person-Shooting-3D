@@ -17,15 +17,6 @@ public class InputManager : MonoBehaviour
         instance = this;
 
         player = GameObject.Find("Player").GetComponent<Player>();
-
-        if (player == null)
-        {
-            Debug.LogError("Player not found!");
-        }
-        else
-        {
-            Debug.Log("Player found!");
-        }
     }
 
     public void Start()

@@ -5,7 +5,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 {
     [Header("Cinemachine")]
     [SerializeField] private CinemachineCamera virtualCamera;
-    [SerializeField] private Transform cameraTarget; // PlayerView transform
+    [SerializeField] private Transform cameraTarget;
 
     [Header("Mouse Settings")]
     [SerializeField] private float mouseSensitivity = 100f;
