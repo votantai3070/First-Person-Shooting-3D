@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0800b5205de0af74cb60b30c0a53087d, type: 3}
+  m_Name: M4_8
+  m_EditorClassIdentifier: 
+  weaponName: M4_8
+  weaponIcon: {fileID: 0}
+  bulletPrefab: {fileID: 4981483417408691638, guid: 73faa06297da07b4cb5a5e4306c17bbf, type: 3}
+  damage: 1
+  fireRate: 5
+  bulletSpeed: 50
+  shootRange: 100
+  magazineSize: 30
+  maxAmmo: 30
+  recoilForce: 0
+  baseSpreadAngle: 0.5
+  maximumSpreadAngle: 3
+  reloadTime: 3
+  muzzleFlashEffect: {fileID: 0}
+  bulletImpactEffect: {fileID: 0}
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
+  weaponType: 2

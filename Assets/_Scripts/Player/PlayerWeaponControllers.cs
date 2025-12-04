@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerWeaponControllers : MonoBehaviour
 {
     public Player player { private set; get; }
     public PlayerControls controls { private set; get; }
@@ -10,22 +10,33 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private float distanceShot = 1000f;
     private Transform gunPoint;
-    WeaponModels currentWeapon;
+
+    WeaponModels currentWeaponModel;
+    Weapon_SO weaponData;
+    [SerializeField] Weapon weapon;
     bool canShoot;
 
     private void Awake()
     {
         player = GetComponent<Player>();
-
     }
 
     void Start()
     {
         AssignInputEvents();
 
-        currentWeapon = player.visuals.GetCurrentWeapon();
+        currentWeaponModel = player.visuals.GetCurrentWeapon();
+        weaponData = player.visuals.GetCurrentWeapon().weaponData;
+        weapon = new Weapon(weaponData);
 
-        gunPoint = currentWeapon.gunPoint;
+        gunPoint = currentWeaponModel.gunPoint;
+
+        SetupWeapon();
+    }
+
+    void SetupWeapon()
+    {
+        bulletSpeed = weapon.bulletSpeed;
     }
 
     public void Shoot()
@@ -50,12 +61,14 @@ public class PlayerAttack : MonoBehaviour
         // Tính direction từ gunPoint đến targetPoint
         Vector3 direction = (targetPoint - gunPoint.position).normalized;
 
-        // Spawn bullet và bắn
-        GameObject newBullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.LookRotation(direction));
-        Rigidbody rbBullet = newBullet.GetComponent<Rigidbody>();
-        rbBullet.linearVelocity = direction * bulletSpeed;
+        // Spread
+        Vector3 bulletDirection = weapon.ApplySpread(direction);
 
-        player.anim.SetBool("Shooting", true);
+        // Spawn bullet và bắn
+        GameObject newBullet = Instantiate(bulletPrefab, gunPoint.position,
+     Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, 0));
+        Rigidbody rbBullet = newBullet.GetComponent<Rigidbody>();
+        rbBullet.linearVelocity = bulletDirection * bulletSpeed;
     }
 
     public void CanShoot(bool shoot)
@@ -72,7 +85,10 @@ public class PlayerAttack : MonoBehaviour
         controls.Player.Fire.performed += ctx =>
         {
             if (!CanShoot())
+            {
                 Shoot();
+                player.anim.SetBool("Shooting", true);
+            }
         };
     }
 }

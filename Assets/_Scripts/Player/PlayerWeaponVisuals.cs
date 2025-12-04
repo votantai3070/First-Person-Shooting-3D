@@ -3,7 +3,7 @@ using UnityEngine.Animations.Rigging;
 
 public class PlayerWeaponVisuals : MonoBehaviour
 {
-    [SerializeField] private WeaponModelType weaponType;
+    [SerializeField] private WeaponType weaponType;
     [SerializeField] private WeaponModels[] weaponModels;
 
     private Transform characterModel;
@@ -26,17 +26,17 @@ public class PlayerWeaponVisuals : MonoBehaviour
         rig = GetComponentInChildren<Rig>();
         weaponModels = GetComponentsInChildren<WeaponModels>(true);
 
-        if (player.anim != null)
-        {
-            characterModel = player.anim.transform;
-        }
-
         if (playerCamera == null)
             playerCamera = Camera.main;
     }
 
     private void Start()
     {
+        if (player.anim != null)
+        {
+            characterModel = player.anim.transform;
+        }
+
         currentWeapon = GetCurrentWeapon();
         AttachLeftHand();
         SwitchAnimationLayer();

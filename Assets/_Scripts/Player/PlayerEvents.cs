@@ -11,9 +11,7 @@ public class PlayerEvents : MonoBehaviour
 
     public void ShootingEnd()
     {
-        Debug.Log("Can Shoot");
-
-        player.attack.CanShoot(false);
+        player.controller.CanShoot(false);
         player.anim.SetBool("Shooting", false);
     }
 }

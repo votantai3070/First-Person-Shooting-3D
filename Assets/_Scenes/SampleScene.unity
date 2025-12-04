@@ -1195,12 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 330585545}
     - target: {fileID: 4721943886271693966, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'arm_stretch.l'\n\tTransform 'shoulder.l'\n\tTransform
-        'hand.l'\n\tTransform 'arm_stretch.l'\n\tTransform 'shoulder.l'\n\tTransform
-        'hand.l'\n\tTransform 'arm_stretch.l'\n\tTransform 'shoulder.l'\n\tTransform
-        'hand.l'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4969860723138155549, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       propertyPath: playerCamera
@@ -1415,6 +1410,10 @@ PrefabInstance:
       value: 17.477
       objectReference: {fileID: 0}
     - target: {fileID: 7285457576417848747, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d427dc8ff2e2744487844f748d1bb13, type: 2}
+    - target: {fileID: 7285457576417848747, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       propertyPath: playerViewPoint
       value: 1
       objectReference: {fileID: 0}
@@ -1502,7 +1501,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1021034596772366858, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1746198263}
+      addedObject: {fileID: 1746198270}
     - targetCorrespondingSourceObject: {fileID: 2030079489832174670, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       insertIndex: -1
       addedObject: {fileID: 748696982}
@@ -1523,7 +1522,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5919409524511631019, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
   m_PrefabInstance: {fileID: 1746198260}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1746198263
+--- !u!4 &1746198264 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8682092657650996866, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
+  m_PrefabInstance: {fileID: 1746198260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1746198270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1532,17 +1536,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1746198261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5854a086cc7a66543985a203125becb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f769a3e95eba774da8086ed3147c607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4553241523770768435, guid: 96baf3ab525404447a1bd0e72afc3806, type: 3}
+  bulletPrefab: {fileID: 7891058214873949390, guid: fda479538d924144cabef019292cfd22, type: 3}
   bulletSpeed: 100
   distanceShot: 1000
---- !u!4 &1746198264 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8682092657650996866, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
-  m_PrefabInstance: {fileID: 1746198260}
-  m_PrefabAsset: {fileID: 0}
+  weapon:
+    bulletSpeed: 0
+    baseSpread: 0
+    maximumSpread: 0
+    weaponData: {fileID: 0}
 --- !u!1 &1816624491
 GameObject:
   m_ObjectHideFlags: 0

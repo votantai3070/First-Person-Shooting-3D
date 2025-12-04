@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     public PlayerControls controls;
     public PlayerMovement movement { get; private set; }
     public PlayerWeaponVisuals visuals { get; private set; }
-    public PlayerAttack attack { get; private set; }
+    public PlayerWeaponControllers controller { get; private set; }
     public Animator anim { get; private set; }
 
 
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
         movement = GetComponent<PlayerMovement>();
         visuals = GetComponent<PlayerWeaponVisuals>();
-        attack = GetComponent<PlayerAttack>();
+        controller = GetComponent<PlayerWeaponControllers>();
         anim = GetComponentInChildren<Animator>();
     }
 

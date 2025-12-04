@@ -279,7 +279,13 @@ AnimatorController:
     m_Name: Pistol/SMG Shooting
     m_StateMachine: {fileID: -4287576191116705789}
     m_Mask: {fileID: 31900000, guid: 357f132e51054974ba5e18ae6940a724, type: 2}
-    m_Motions: []
+    m_Motions:
+    - serializedVersion: 2
+      m_State: {fileID: 6047518477720161329}
+      m_Motion: {fileID: 7400000, guid: 8b2fa5b2a86031345a23b9b7cc8a0885, type: 2}
+    - serializedVersion: 2
+      m_State: {fileID: -8655840798859683407}
+      m_Motion: {fileID: -203655887218126122, guid: ac18c278ecf78094db0b29d8780ed8b0, type: 3}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 1
