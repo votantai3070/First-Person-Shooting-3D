@@ -6,8 +6,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
     [SerializeField] private WeaponModelType weaponType;
     [SerializeField] private WeaponModels[] weaponModels;
 
-    private Animator animator;
-    private Transform characterModel; // Transform của model (BountyHunterRIO2)
+    private Transform characterModel;
 
     public Player player { get; private set; }
     public Rig rig { get; private set; }
@@ -19,19 +18,17 @@ public class PlayerWeaponVisuals : MonoBehaviour
     [SerializeField] private Camera playerCamera;
 
     private WeaponModels currentWeapon;
-    private int currentLayerIndex = -1;
 
     private void Awake()
     {
         player = GetComponent<Player>();
-        animator = GetComponentInChildren<Animator>();
+
         rig = GetComponentInChildren<Rig>();
         weaponModels = GetComponentsInChildren<WeaponModels>(true);
 
-        // ========== QUAN TRỌNG: Lấy character model transform ==========
-        if (animator != null)
+        if (player.anim != null)
         {
-            characterModel = animator.transform;
+            characterModel = player.anim.transform;
         }
 
         if (playerCamera == null)
@@ -60,7 +57,6 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
     public void SetRunning(Vector3 worldDirection)
     {
-        // ========== FIX: Convert relative to CHARACTER MODEL, không phải Player root ==========
         Vector3 localDirection = Vector3.zero;
 
         if (characterModel != null && worldDirection.magnitude > 0.01f)
@@ -71,9 +67,9 @@ public class PlayerWeaponVisuals : MonoBehaviour
         bool isRunning = worldDirection.magnitude > 0.01f;
 
         // Set animator parameters
-        animator.SetBool("Running", isRunning);
-        animator.SetFloat("x", localDirection.x, 0.1f, Time.deltaTime);
-        animator.SetFloat("z", localDirection.z, 0.1f, Time.deltaTime);
+        player.anim.SetBool("Running", isRunning);
+        player.anim.SetFloat("x", localDirection.x, 0.1f, Time.deltaTime);
+        player.anim.SetFloat("z", localDirection.z, 0.1f, Time.deltaTime);
     }
 
     private void AttachLeftHand()
@@ -128,18 +124,14 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
         int layerIndex = (int)currentWeapon.layerAnimationType;
 
-        if (layerIndex == currentLayerIndex)
-            return;
-
-        for (int i = 0; i < animator.layerCount; i++)
+        for (int i = 0; i < player.anim.layerCount; i++)
         {
-            animator.SetLayerWeight(i, 0);
+            player.anim.SetLayerWeight(i, 0);
         }
 
-        if (layerIndex < animator.layerCount)
+        if (layerIndex < player.anim.layerCount)
         {
-            animator.SetLayerWeight(layerIndex, 1);
-            currentLayerIndex = layerIndex;
+            player.anim.SetLayerWeight(layerIndex, 1);
         }
     }
 
@@ -163,15 +155,15 @@ public class PlayerWeaponVisuals : MonoBehaviour
     // Debug để check giá trị
     private void OnGUI()
     {
-        if (animator == null) return;
+        if (player.anim == null) return;
 
         GUIStyle style = new GUIStyle();
         style.fontSize = 16;
         style.normal.textColor = Color.yellow;
 
-        GUI.Label(new Rect(10, 200, 400, 25), $"Running: {animator.GetBool("Running")}", style);
-        GUI.Label(new Rect(10, 225, 400, 25), $"X: {animator.GetFloat("x"):F2}", style);
-        GUI.Label(new Rect(10, 250, 400, 25), $"Z: {animator.GetFloat("z"):F2}", style);
+        GUI.Label(new Rect(10, 200, 400, 25), $"Running: {player.anim.GetBool("Running")}", style);
+        GUI.Label(new Rect(10, 225, 400, 25), $"X: {player.anim.GetFloat("x"):F2}", style);
+        GUI.Label(new Rect(10, 250, 400, 25), $"Z: {player.anim.GetFloat("z"):F2}", style);
 
         if (characterModel != null)
         {

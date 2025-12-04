@@ -64,6 +64,7 @@
     <Compile Include="Assets\_Scripts\Weapon\ElbowHintPositioner.cs" />
     <Compile Include="Assets\_Scripts\Weapon\WeaponModels.cs" />
     <Compile Include="Assets\_Scripts\Weapon\AimTargetUpdater.cs" />
+    <Compile Include="Assets\_Scripts\Player\PlayerEvents.cs" />
     <Compile Include="Assets\_Scripts\Player\Player.cs" />
     <Compile Include="Assets\_Scripts\FixShaders.cs" />
     <Compile Include="Assets\_Scripts\Weapon\AimTargetController.cs" />
