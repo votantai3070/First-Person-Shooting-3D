@@ -72,6 +72,8 @@ public class PlayerWeaponVisuals : MonoBehaviour
         player.anim.SetFloat("z", localDirection.z, 0.1f, Time.deltaTime);
     }
 
+    public void PlayFireAnimation() => player.anim.SetTrigger("Shooting");
+
     private void AttachLeftHand()
     {
         if (currentWeapon == null)

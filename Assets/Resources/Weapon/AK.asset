@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0800b5205de0af74cb60b30c0a53087d, type: 3}
-  m_Name: M4_8
+  m_Name: AK
   m_EditorClassIdentifier: 
   weaponName: M4_8
   weaponIcon: {fileID: 0}
-  bulletPrefab: {fileID: 4981483417408691638, guid: 73faa06297da07b4cb5a5e4306c17bbf, type: 3}
+  bulletPrefab: {fileID: 7891058214873949390, guid: fda479538d924144cabef019292cfd22, type: 3}
   damage: 1
   fireRate: 5
   bulletSpeed: 80
   shootRange: 100
-  impactForce: 10
+  impactForce: 5
   bulletsPerShot: 1
   magazineSize: 30
   maxAmmo: 30

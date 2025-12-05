@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerWeaponControllers : MonoBehaviour
 {
@@ -6,6 +7,10 @@ public class PlayerWeaponControllers : MonoBehaviour
     public PlayerControls controls { private set; get; }
 
     [Header("Elements")]
+    private float averageMass;
+    private bool weaponReady;
+    private bool isShooting;
+
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private float distanceShot = 1000f;
@@ -34,12 +39,54 @@ public class PlayerWeaponControllers : MonoBehaviour
         SetupWeapon();
     }
 
+    private void Update()
+    {
+        if (isShooting)
+            Shoot();
+    }
+
     void SetupWeapon()
     {
         bulletSpeed = weapon.bulletSpeed;
+        bulletPrefab = weapon.bulletPrefab;
+        averageMass = weapon.impactForce;
     }
 
-    public void Shoot()
+    IEnumerator BurstFire()
+    {
+        SetWeaponReady(false);
+
+        for (int i = 1; i <= weapon.bulletsPerShot; i++)
+        {
+            FireSingleBullet();
+            yield return new WaitForSeconds(weapon.burstFireDelay);
+
+            if (i >= weapon.bulletsPerShot)
+                SetWeaponReady(true);
+        }
+    }
+
+    private void Shoot()
+    {
+        //if (!WeaponReady()) return;
+
+        //if (!weapon.CanShoot()) return;
+
+        player.visuals.PlayFireAnimation();
+
+        if (weapon.shootType == ShootType.Single)
+            isShooting = false;
+
+        if (weapon.BurstActivated())
+        {
+            StartCoroutine(BurstFire());
+            return;
+        }
+
+        FireSingleBullet();
+    }
+
+    public void FireSingleBullet()
     {
         if (CanShoot()) return;
 
@@ -68,6 +115,7 @@ public class PlayerWeaponControllers : MonoBehaviour
         GameObject newBullet = Instantiate(bulletPrefab, gunPoint.position,
      Quaternion.LookRotation(bulletDirection) * Quaternion.Euler(90, 0, 0));
         Rigidbody rbBullet = newBullet.GetComponent<Rigidbody>();
+        rbBullet.mass = averageMass / bulletSpeed;
         rbBullet.linearVelocity = bulletDirection * bulletSpeed;
     }
 
@@ -78,17 +126,15 @@ public class PlayerWeaponControllers : MonoBehaviour
 
     public bool CanShoot() => canShoot;
 
+    public void SetWeaponReady(bool ready) => weaponReady = ready;
+    public bool WeaponReady() => weaponReady;
+
     void AssignInputEvents()
     {
         controls = player.controls;
 
-        controls.Player.Fire.performed += ctx =>
-        {
-            if (!CanShoot())
-            {
-                Shoot();
-                player.anim.SetBool("Shooting", true);
-            }
-        };
+        controls.Player.Fire.performed += ctx => isShooting = true;
+        controls.Player.Fire.canceled += ctx => isShooting = false;
     }
+
 }

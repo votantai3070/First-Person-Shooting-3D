@@ -13,8 +13,16 @@ public class Weapon_SO : ScriptableObject
     public float fireRate; // Số phát/giây hoặc delay giữa mỗi shot
     public float bulletSpeed;
     public float shootRange;
+    public float impactForce;
+    public int bulletsPerShot;
     public int magazineSize;
     public int maxAmmo;
+
+    [Header("Burst")]
+    public bool burstAvailable;
+    public bool burstActive;
+    public int burstBulletsPerShot;
+    public float burstFireDelay;
 
     [Header("Recoil & Accuracy")]
     public float recoilForce;
@@ -32,5 +40,8 @@ public class Weapon_SO : ScriptableObject
 
     [Header("Weapon Type")]
     public WeaponType weaponType;
+
+    [Header("Weapon Shoot Type")]
+    public ShootType shootType;
 }
 
