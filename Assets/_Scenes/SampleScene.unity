@@ -198,6 +198,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &221660625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1060358026990823832, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
+  m_PrefabInstance: {fileID: 1746198260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &294805185 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2030079489832174670, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
@@ -1422,6 +1427,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4703802621410792355, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
+      propertyPath: leftHandIK
+      value: 
+      objectReference: {fileID: 1788556934}
+    - target: {fileID: 4703802621410792355, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       propertyPath: weaponType
       value: 2
       objectReference: {fileID: 0}
@@ -1429,6 +1438,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4703802621410792355, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
+      propertyPath: leftHandIK_Target
+      value: 
+      objectReference: {fileID: 221660625}
     - target: {fileID: 4721943886271693966, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
       propertyPath: m_WarningMessage
       value: 
@@ -1781,10 +1794,14 @@ MonoBehaviour:
   weapon:
     weaponType: 0
     shootType: 0
+    reloadTime: 0
+    reloadSpeed: 0
     bulletSpeed: 0
     bulletPrefab: {fileID: 0}
     impactForce: 0
     fireRate: 0
+    burstAvailable: 0
+    burstActive: 0
     baseSpread: 0
     maximumSpread: 0
     currentSpread: 0
@@ -1792,6 +1809,17 @@ MonoBehaviour:
     magazineCapacity: 0
     totalReserveAmmo: 0
     weaponData: {fileID: 0}
+--- !u!114 &1788556934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7480869675608255777, guid: 7166087c57f18214f9cc1622ff2e3113, type: 3}
+  m_PrefabInstance: {fileID: 1746198260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816624491
 GameObject:
   m_ObjectHideFlags: 0

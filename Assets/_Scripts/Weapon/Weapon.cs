@@ -11,8 +11,10 @@ public class Weapon
     public WeaponType weaponType;
     public ShootType shootType;
 
-    public int bulletsPerShot { get; private set; }
+    public float reloadTime;
+    public float reloadSpeed;
 
+    public int bulletsPerShot { get; private set; }
     public float bulletSpeed;
     public GameObject bulletPrefab;
     public float impactForce;
@@ -24,8 +26,8 @@ public class Weapon
     #endregion
 
     #region Burst mode variables
-    private bool burstAvailable;
-    private bool burstActive;
+    [SerializeField] private bool burstAvailable;
+    [SerializeField] private bool burstActive;
     private int burstBulletsPerShot;
     private float burstFireRate;
     public float burstFireDelay { get; private set; }
@@ -50,19 +52,32 @@ public class Weapon
     public Weapon(Weapon_SO weapon)
     {
         weaponData = weapon;
-        this.bulletSpeed = weapon.bulletSpeed;
-        this.baseSpread = weapon.baseSpreadAngle;
-        this.maximumSpread = weapon.maximumSpreadAngle;
-        this.bulletPrefab = weapon.bulletPrefab;
-        this.impactForce = weapon.impactForce;
+        bulletSpeed = weapon.bulletSpeed;
+        baseSpread = weapon.baseSpreadAngle;
+        maximumSpread = weapon.maximumSpreadAngle;
+        bulletPrefab = weapon.bulletPrefab;
+        impactForce = weapon.impactForce;
+
+        reloadTime = weapon.reloadTime;
+
+        fireRate = weapon.fireRate;
 
         bulletsPerShot = weapon.bulletsPerShot;
         shootType = weapon.shootType;
+        bulletsInMagazine = weapon.bulletsInMagazine;
+        magazineCapacity = weapon.magazineCapacity;
+        totalReserveAmmo = weapon.totalReserveAmmo;
 
         burstAvailable = weapon.burstAvailable;
         burstActive = weapon.burstActive;
         burstBulletsPerShot = weapon.burstBulletsPerShot;
+        burstFireRate = weapon.burstFireRate;
         burstFireDelay = weapon.burstFireDelay;
+
+        weaponType = weapon.weaponType;
+        shootType = weapon.shootType;
+
+        reloadSpeed = weapon.reloadSpeed;
     }
 
     #region Burst methods

@@ -37,6 +37,8 @@ public class PlayerWeaponControllers : MonoBehaviour
         gunPoint = currentWeaponModel.gunPoint;
 
         SetupWeapon();
+
+        SetWeaponReady(true);
     }
 
     private void Update()
@@ -52,9 +54,32 @@ public class PlayerWeaponControllers : MonoBehaviour
         averageMass = weapon.impactForce;
     }
 
+    private void Shoot()
+    {
+        if (!WeaponReady()) return;
+
+        if (!weapon.CanShoot()) return;
+
+        if (weapon.shootType == ShootType.Single)
+            isShooting = false;
+
+        player.visuals.PlayFireAnimation();
+
+        if (weapon.BurstActivated())
+        {
+            Debug.Log("Vao day!");
+            StartCoroutine(BurstFire());
+            return;
+        }
+
+        FireSingleBullet();
+    }
+
     IEnumerator BurstFire()
     {
+        Debug.Log("Vao day!!");
         SetWeaponReady(false);
+        Debug.Log("Vao day!!!");
 
         for (int i = 1; i <= weapon.bulletsPerShot; i++)
         {
@@ -66,31 +91,9 @@ public class PlayerWeaponControllers : MonoBehaviour
         }
     }
 
-    private void Shoot()
-    {
-        //if (!WeaponReady()) return;
-
-        //if (!weapon.CanShoot()) return;
-
-        player.visuals.PlayFireAnimation();
-
-        if (weapon.shootType == ShootType.Single)
-            isShooting = false;
-
-        if (weapon.BurstActivated())
-        {
-            StartCoroutine(BurstFire());
-            return;
-        }
-
-        FireSingleBullet();
-    }
-
     public void FireSingleBullet()
     {
-        if (CanShoot()) return;
-
-        CanShoot(true);
+        weapon.bulletsInMagazine--;
 
         // Raycast từ center màn hình để tìm điểm bắn
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // center screen
@@ -119,15 +122,19 @@ public class PlayerWeaponControllers : MonoBehaviour
         rbBullet.linearVelocity = bulletDirection * bulletSpeed;
     }
 
-    public void CanShoot(bool shoot)
+    IEnumerator ReloadWeapon()
     {
-        canShoot = shoot;
-    }
+        player.visuals.PlayReloadAnimation();
 
-    public bool CanShoot() => canShoot;
+        yield return new WaitForSeconds(weapon.reloadTime);
+
+        weapon.RefillBullets();
+    }
 
     public void SetWeaponReady(bool ready) => weaponReady = ready;
     public bool WeaponReady() => weaponReady;
+
+    public Weapon CurrentWeapon() => weapon;
 
     void AssignInputEvents()
     {
@@ -135,6 +142,8 @@ public class PlayerWeaponControllers : MonoBehaviour
 
         controls.Player.Fire.performed += ctx => isShooting = true;
         controls.Player.Fire.canceled += ctx => isShooting = false;
-    }
 
+        controls.Player.BurstMode.performed += ctx => weapon.ToggleBurst();
+        controls.Player.Reload.performed += ctx => StartCoroutine(ReloadWeapon());
+    }
 }

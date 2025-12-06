@@ -16,21 +16,24 @@ MonoBehaviour:
   weaponIcon: {fileID: 0}
   bulletPrefab: {fileID: 4981483417408691638, guid: 73faa06297da07b4cb5a5e4306c17bbf, type: 3}
   damage: 1
-  fireRate: 5
+  fireRate: 8
   bulletSpeed: 80
   shootRange: 100
   impactForce: 10
   bulletsPerShot: 1
-  magazineSize: 30
-  maxAmmo: 30
-  burstAvailable: 0
+  magazineCapacity: 30
+  bulletsInMagazine: 30
+  totalReserveAmmo: 90
+  burstAvailable: 1
   burstActive: 0
   burstBulletsPerShot: 3
-  burstFireDelay: 2
+  burstFireRate: 20
+  burstFireDelay: 0.5
   recoilForce: 0
   baseSpreadAngle: 0.5
-  maximumSpreadAngle: 3
+  maximumSpreadAngle: 2
   reloadTime: 3
+  reloadSpeed: 2
   muzzleFlashEffect: {fileID: 0}
   bulletImpactEffect: {fileID: 0}
   shootSound: {fileID: 0}

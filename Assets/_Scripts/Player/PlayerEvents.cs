@@ -11,7 +11,21 @@ public class PlayerEvents : MonoBehaviour
 
     public void ShootingEnd()
     {
-        player.controller.CanShoot(false);
         player.anim.SetBool("Shooting", false);
+    }
+
+    public void ReloadIsOver()
+    {
+        player.visuals.MaximizeRigWeight();
+        //Refill bullets
+        player.controller.CurrentWeapon().RefillBullets();
+
+        player.controller.SetWeaponReady(true);
+    }
+
+    public void ReturnRig()
+    {
+        player.visuals.MaximizeRigWeight();
+        player.visuals.MaximizeLeftHandWeight();
     }
 }
